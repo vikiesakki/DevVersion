@@ -1,0 +1,19 @@
+<h1>Welcome to the ROR</h1>
+<p>Whole World</p>
+<%= link_to 'REGISTER',:controller=>:user,:action=>:new %>
+<%= form_for :login,url:{:controller => 'login',:action => 'login_check'} do |l| %>
+<p>
+	<%= l.label :username %>
+	<%= l.text_field :username %>
+</p>
+<p>
+	<%= l.label :password %>
+	<%= l.text_field :password %>
+</p>
+<p>
+	<%= l.submit :login%>
+</p>
+<% names = ['danil', 'edmund'] %>
+<% names.each{ |name| name.capitalize} %>
+<% end %>
+

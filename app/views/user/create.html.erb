@@ -1,0 +1,15 @@
+<% if @users.errors[:username].any? %>
+<%= @users.errors.inspect %>
+<% end %>
+<%= form_for :users do |user| %>
+<%= user.label :username %>
+<%= user.text_field :username %>
+<%= user.label :phone %>
+<%= user.text_field :mobile %>
+<%= user.label :address %>
+<%= user.text_field :address %>
+<%= user.label :email %>
+<%= user.text_field :email %>
+<%= user.submit :Register %>
+
+<% end %>
