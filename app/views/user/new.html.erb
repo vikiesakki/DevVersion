@@ -1,7 +1,8 @@
-<%= @users.error_message %>
-<%= form_for :users,:url=>create_user_url do |user| %>
+<%= form_for :users,:url=>create_user_path do |user| %>
 <%= user.label :username %>
 <%= user.text_field :username %>
+<%= user.label :password %>
+<%= user.password_field :password %>
 <%= user.label :phone %>
 <%= user.text_field :mobile %>
 <%= user.label :address %>
