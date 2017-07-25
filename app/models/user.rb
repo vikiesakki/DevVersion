@@ -1,3 +1,3 @@
 class User < ActiveRecord::Base
-  validates :username,:mobile, :presence=>true
+	has_many :user_histories
 end

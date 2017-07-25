@@ -1,7 +1,6 @@
 <h1>Welcome to the ROR</h1>
 <p>Whole World</p>
-<%= link_to 'REGISTER',:controller=>:user,:action=>:new %>
-<%= form_for :login,url:{:controller => 'login',:action => 'login_check'} do |l| %>
+<%= form_for :login,url:{:controller => 'login',:action => 'login'} do |l| %>
 <p>
 	<%= l.label :username %>
 	<%= l.text_field :username %>
@@ -11,7 +10,7 @@
 	<%= l.text_field :password %>
 </p>
 <p>
-	<%= l.submit :login%>
+	<%= l.submit :login %>
 </p>
 <% names = ['danil', 'edmund'] %>
 <% names.each{ |name| name.capitalize} %>

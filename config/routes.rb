@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   root  'login#index', :via=>[:get,:post]
-  match 'login/login', :to=>'login#login_check', :via=>[:post]
+  match 'login/login', :to=>'login#login', :via=>[:post]
   match 'users', :to => 'user#index', :via => [:get,:post]
   match 'create-user', :to => 'user#create', :via => [:get,:post]
   #get 'user/new'
