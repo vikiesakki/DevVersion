@@ -1,18 +1,36 @@
-<h1>Welcome to the ROR</h1>
-<p>Whole World</p>
-<%= form_for :login,url:{:controller => 'login',:action => 'login'} do |l| %>
-<p>
-	<%= l.label :username %>
-	<%= l.text_field :username %>
-</p>
-<p>
-	<%= l.label :password %>
-	<%= l.text_field :password %>
-</p>
-<p>
-	<%= l.submit :login %>
-</p>
-<% names = ['danil', 'edmund'] %>
-<% names.each{ |name| name.capitalize} %>
-<% end %>
+<div class="login-body">
+<div class="col-md-12">
+<div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Project Management</h3>
+        </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <%= form_for :login,:html => {:class=>"form-horizontal"},url:{:controller => 'login',:action => 'login'} do |l| %>
+              <div class="box-body">
+                <div class="form-group">
+                  <%= l.label :username,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-10">
+                  	<%= l.text_field :username,:class=>"form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :password,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-10">
+                  	<%= l.password_field :password, :class=>"form-control" %>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <%= l.submit :login,:class=>"btn btn-info pull-right" %>
+              </div>
+              <!-- /.box-footer -->
+            <% end %>
+          </div>
+          </div>
+</div>
+
 

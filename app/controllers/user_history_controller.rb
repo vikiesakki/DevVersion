@@ -1,2 +1,0 @@
-class UserHistoryController < ApplicationController
-end

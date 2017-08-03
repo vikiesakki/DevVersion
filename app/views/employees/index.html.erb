@@ -1,0 +1,69 @@
+<%= render :partial=> "common/admin_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_employees) %>
+      </h1>
+      <%= link_to t(:label_add),{:controller=>:employees,:action=>:new},{:class=>"btn btn-primary"} %>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <table class="table">
+                <tr>
+                  <th><%= t(:label_sno) %></th>
+                  <th><%= t(:field_name) %></th>
+                  <th><%= t(:field_email) %></th>
+                  <th><%= t(:field_address) %></th>
+                  <th><%= t(:field_role) %></th>
+                  <th><%= t(:field_location) %></th>
+                  <th><%= t(:field_type) %></th>
+                  <th><%= t(:field_mobile) %></th>
+                  <th><%= t(:label_edit) %></th>
+                  <th><%= t(:label_delete) %></th>
+                </tr>
+                  <% i=1 %>
+                  <% @users.each do |user| %>
+                  <tr>
+                    <td><%= i %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.address %></td>
+                    <td><%= user.role %></td>
+                    <td><%= user.location.name %></td>
+                    <td><%= user.user_type %></td>
+                    <td><%= user.mobile %></td>
+                    <td><%= link_to t(:label_edit),edit_employee_path(user) %></td>
+                    <td><%= link_to t(:label_delete),employee_path(user),method: :delete, :data => {:confirm => 'Are you sure?'} %></td>
+                  </tr>
+                  <% i+=1 %>
+                  <% end %>
+              </table>
+              <%= will_paginate @users %>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

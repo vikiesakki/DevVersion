@@ -11,55 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725061213) do
+ActiveRecord::Schema.define(version: 20170806065208) do
 
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "documents", force: :cascade do |t|
+    t.integer "project_id",  limit: 4
+    t.integer "uploaded_by", limit: 4
+    t.string  "document",    limit: 255
   end
 
-  create_table "departments", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "created_by", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "locations", force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "address",       limit: 255
-    t.integer  "mobile",        limit: 4
-    t.integer  "department_id", limit: 8
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+  create_table "project_members", force: :cascade do |t|
+    t.integer "project_id", limit: 4
+    t.integer "user_id",    limit: 4
   end
 
-  add_index "employees", ["department_id"], name: "index_employees_on_department_id", using: :btree
-
-  create_table "question", force: :cascade do |t|
-    t.integer "user_id",     limit: 4
-    t.integer "question_id", limit: 4
-    t.integer "answer_id",   limit: 4
+  create_table "projects", force: :cascade do |t|
+    t.string  "name",         limit: 255
+    t.string  "project_type", limit: 255
+    t.string  "progress",     limit: 255
+    t.string  "project_code", limit: 255
+    t.integer "created_by",   limit: 4
+    t.integer "updated_by",   limit: 4
+    t.date    "start_date"
+    t.date    "end_date"
+    t.float   "sow_value",    limit: 24
   end
 
   create_table "user_histories", force: :cascade do |t|
-    t.integer  "user_id",        limit: 4
-    t.integer  "login_attempts", limit: 4
-    t.integer  "login_times",    limit: 4
-    t.string   "login_agent",    limit: 255
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer "user_id",        limit: 4
+    t.integer "login_attempts", limit: 4
+    t.integer "login_times",    limit: 4
+    t.string  "login_agent",    limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "username", limit: 255
-    t.string  "password", limit: 255
-    t.string  "email",    limit: 255
-    t.string  "address",  limit: 255
-    t.integer "mobile",   limit: 4
+    t.string  "username",    limit: 255
+    t.string  "password",    limit: 255
+    t.string  "email",       limit: 255
+    t.string  "address",     limit: 255
+    t.string  "role",        limit: 255
+    t.string  "user_type",   limit: 255
+    t.integer "mobile",      limit: 8
+    t.integer "location_id", limit: 4
   end
 
-  add_foreign_key "employees", "departments"
 end

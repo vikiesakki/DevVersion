@@ -1,5 +1,53 @@
-<h2>Welcome to users</h2>
-<%= link_to 'ADD',:controller=>:user,:action=>:new %>
-<%= @users.each do |user| %>
-user.id
-<% end %>
+<%= render :partial=> "common/user_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_project_management) %>
+      </h1>
+    </section>
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <span class="info-box-text">Projects</span>
+              <span class="info-box-number"><%= @projects.count rescue 0 %></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+        <div class="clearfix visible-sm-block"></div>
+      </div>
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <div class="col-md-8">
+          <!-- MAP & BOX PANE -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+  </div>
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+
+  <div class="control-sidebar-bg"></div>
+
+</div>
+<!-- ./wrapper -->
+
+
+</body>
+</html>

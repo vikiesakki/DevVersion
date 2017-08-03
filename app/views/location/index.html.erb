@@ -1,0 +1,57 @@
+<%= render :partial=> "common/admin_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_locations) %>
+      </h1>
+      <%= link_to t(:label_add),{:controller=>:location,:action=>:new},{:class=>"btn btn-primary"} %>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <table class="table">
+                <tr>
+                  <th><%= t(:label_sno) %></th>
+                  <th><%= t(:field_name) %></th>
+                  <th><%= t(:label_edit) %></th>
+                  <th><%= t(:label_delete) %></th>
+                </tr>
+                  <% i=1 %>
+                  <% @location.each do |loc| %>
+                  <tr>
+                    <td><%= i %></td>
+                    <td><%= loc.name %></td>
+                    <td><%= link_to t(:label_edit),edit_location_path(loc) %></td>
+                    <td><%= link_to t(:label_delete),location_path(loc),method: :delete, :data => {:confirm => 'Are you sure?'} %></td>
+                  </tr>
+                  <% i+=1 %>
+                  <% end %>
+              </table>
+              <%= will_paginate @location %>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

@@ -21,3 +21,39 @@
 
 en:
   hello: "Hello world"
+  label_login_error: "Please check your login credentials"
+  label_employees: "Employees"
+  label_project_management: Project Management
+  label_add: Add
+  label_projects: Projects
+  label_locations: Locations 
+  label_admin: Admin
+  success_create: Successfully Created
+  label_sno: S.NO
+  label_edit: Edit
+  label_update: Update
+  label_delete: Delete
+  label_sign_out: Sign out
+  label_dashboard: Dashboard
+  label_members: Members
+  label_view: View
+
+
+
+  #fields for model
+
+  field_name: Name
+  field_email: Email
+  field_address: Address
+  field_role: Role
+  field_location: Location
+  field_type: Type
+  field_mobile: Mobile
+  field_project_type: Project Type
+  field_project_code: Project Code
+  field_start_date: Start Date
+  field_end_date: End Date
+  field_sow_value: Sow Value
+  field_progress: Progress
+  field_created_by: Created By
+

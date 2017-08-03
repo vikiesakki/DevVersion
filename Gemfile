@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
+gem 'will_paginate'
+gem 'carrierwave', '~> 0.11.2'
 gem 'resque-web', require: 'resque_web'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,7 +51,7 @@ group :development do
 end
 
 group :test do 
-	gem 'shoulda-matchers'
-  	gem 'faker'
+	gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
+  gem 'faker'
 end
 

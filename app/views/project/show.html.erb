@@ -1,0 +1,79 @@
+<%= render :partial=> "common/admin_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_projects) %>
+      </h1>
+      <%= link_to t(:label_add),{:controller=>:project,:action=>:new},{:class=>"btn btn-primary"} %>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <%= form_for @document, url:{:action => 'upload_documents'}, html: { multipart: true } do |l| %>
+              <div class="box-body">
+                <div class="form-group">
+                  <%= l.hidden_field :project_id,:value=>@project.id%>
+                  <div class="col-sm-6">
+                    <%= l.file_field :document,{:class=>"form-control"} %>
+                  </div>
+                </div>
+                <div class="box-footer">
+                <%= l.submit :upload,:class=>"btn btn-info" %>
+              </div>
+              <% end %>
+              <table class="table">
+                <tr>
+                  <th><%= t(:field_name) %></th>
+                  <th><%= t(:field_progress) %></th>
+                  <th><%= t(:field_project_type) %></th>
+                  <th><%= t(:field_project_code) %></th>
+                  <th><%= t(:field_created_by) %></th>
+                  <th><%= t(:field_start_date) %></th>
+                  <th><%= t(:field_end_date) %></th>
+                  <th><%= t(:field_sow_value) %></th>
+                </tr>
+                  <tr>
+                    <td><%= @project.name %></td>
+                    <td><%= "#{@project.progress}%" %></td>
+                    <td><%= @project.project_type %></td>
+                    <td><%= @project.project_code %></td>
+                    <td><%= User.find(@project.created_by).username %></td>
+                    <td><%= @project.start_date %></td>
+                    <td><%= @project.end_date %></td>
+                    <td><%= @project.sow_value %></td>
+                  </tr>
+              </table>
+              <table>
+              <% @project.documents.each do |file| %>
+                <tr>
+                  <td><%= link_to file.document_identifier,file.document.url %></td>
+                </tr>
+                <% end %>
+              </table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

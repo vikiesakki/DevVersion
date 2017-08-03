@@ -1,0 +1,99 @@
+<%= render :partial=> "common/admin_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_employees) %>
+      </h1>
+      <%= link_to t(:label_add),:controller=>:employees,:action=>:new %>
+    </section>
+    <% if not @users.errors.messages.nil? %>
+    <%= @users.errors.messages.inspect %>
+    <% end %>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class=" col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <%= form_for @users,url:employees_path(@users),:html => {:class=>"form-horizontal"} do |l| %>
+              <div class="box-body">
+                <div class="form-group">
+                  <%= l.label :username,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.text_field :username,:required=>true,:class=>"form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :password,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.password_field :password, :class=>"form-control",:required=>true %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :email,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.email_field :email,:required=>true,:class=>"form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :address,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.text_field :address,:required=>true,:class=>"form-control" %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :role,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.select :role,options_for_select(["Developer","Project Manager"]),{},{:class=>"form-control"} %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :location,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.select :location_id,options_for_select(Location.all.collect{|a| [a.name,a.id.to_i]}),{:prompt=>"---select---"},{:class=>"form-control"} %>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <%= l.label :mobile,:class=>"col-sm-2 control-label" %>
+
+                  <div class="col-sm-6">
+                    <%= l.text_field :mobile,:required=>true,:class=>"form-control" %>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <%= l.submit :add,:class=>"btn btn-info" %>
+              </div>
+              <% end %>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

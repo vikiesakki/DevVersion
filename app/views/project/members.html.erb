@@ -1,0 +1,66 @@
+<%= render :partial=> "common/user_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= "#{t(:label_add)} #{t(:label_members)}" %>
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+            <%= form_for @member,url: {:controller=>:project,:action=>:add_members},:html => {:class=>"form-horizontal"} do |l| %>
+              <div class="box-body">
+                <div class="form-group">
+                  <%= l.label :User,:class=>"col-sm-2 control-label" %>
+                  <%= l.hidden_field :project_id,:value=>@project.id%>
+                  <div class="col-sm-6">
+                    <%= l.select :user_id,options_for_select(get_members.collect{|a| [a.username,a.id.to_i]}),{:prompt=>"select"},{:class=>"form-control"} %>
+                  </div>
+                </div>
+                <div class="box-footer">
+                <%= l.submit :add,:class=>"btn btn-info" %>
+              </div>
+              <% end %>
+              <table class="table">
+                <tr>
+                  <th><%= t(:label_sno) %></th>
+                  <th><%= t(:field_name) %></th>
+                  <th><%= t(:label_delete) %></th>
+                </tr>
+                  <% i=1 %>
+                  <% @members.each do |member| %>
+                  <tr>
+                    <td><%= i %></td>
+                    <td><%= member.user.username %></td>
+                    <td><%= link_to t(:label_delete),{:controller=>:project,:action=>:delete_members,:id=>member.id},method: :delete, :data => {:confirm => 'Are you sure?'} %></td>
+                  </tr>
+                  <% i+=1 %>
+                  <% end %>
+              </table>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

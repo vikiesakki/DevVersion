@@ -1,0 +1,79 @@
+<%= render :partial=> "common/admin_header"%>
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <%= t(:label_projects) %>
+      </h1>
+      <%= link_to t(:label_add),{:controller=>:project,:action=>:new},{:class=>"btn btn-primary"} %>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="info-box">
+            <div class="info-box-content">
+              <table class="table">
+                <tr>
+                  <th><%= t(:label_sno) %></th>
+                  <th><%= t(:field_name) %></th>
+                  <th><%= t(:field_progress) %></th>
+                  <th><%= t(:field_project_type) %></th>
+                  <th><%= t(:field_project_code) %></th>
+                  <th><%= t(:field_created_by) %></th>
+                  <th><%= t(:field_start_date) %></th>
+                  <th><%= t(:field_end_date) %></th>
+                  <th><%= t(:field_sow_value) %></th>
+                  <th><%= t(:label_edit) %></th>
+                  <th><%= t(:label_view) %></th>
+                  <% if session[:user_role]=='Project Manager' %>
+                  <th><%= t(:label_members) %></th>
+                  <th><%= t(:label_delete) %></th>
+                  <% end %>
+                </tr>
+                  <% i=1 %>
+                  <% @projects.each do |project| %>
+                  <tr>
+                    <td><%= i %></td>
+                    <td><%= project.name %></td>
+                    <td><%= "#{project.progress}%" %></td>
+                    <td><%= project.project_type %></td>
+                    <td><%= project.project_code %></td>
+                    <td><%= User.find(project.created_by).username %></td>
+                    <td><%= project.start_date %></td>
+                    <td><%= project.end_date %></td>
+                    <td><%= project.sow_value %></td>
+                    <td><%= link_to t(:label_edit),edit_project_path(project) %></td>
+                    <td><%= link_to t(:label_view),project_path(project) %></td>
+                    <% if session[:user_role]=='Project Manager' %>
+                    <td><%= link_to "#{t(:label_members)}",:controller=>:project,:action=>:members,:id=>project %></td>
+                    <td><%= link_to t(:label_delete),project_path(project),method: :delete, :data => {:confirm => 'Are you sure?'} %></td>
+                    <% end %>
+                  </tr>
+                  <% i+=1 %>
+                  <% end %>
+              </table>
+              <%= will_paginate @projects %>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>
